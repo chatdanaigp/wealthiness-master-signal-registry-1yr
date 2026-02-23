@@ -2,7 +2,6 @@
 
 import { Inter } from "next/font/google";
 import "./globals.css";
-import "../public/tailwind-compiled.css";
 
 const inter = Inter({
     variable: "--font-inter",
