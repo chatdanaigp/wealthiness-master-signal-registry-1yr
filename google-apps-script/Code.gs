@@ -234,6 +234,9 @@ function getPendingRegistrations() {
           rowIndex: i + 1,
           discordId: discordId,
           discordInfo: discordInfo,
+          firstName: row[COLUMNS.FIRST_NAME],
+          nickname: row[COLUMNS.NICKNAME],
+          lastName: row[COLUMNS.LAST_NAME],
         });
       }
     }

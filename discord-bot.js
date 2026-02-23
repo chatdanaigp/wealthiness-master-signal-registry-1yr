@@ -406,6 +406,39 @@ async function fetchApprovedRegistrations() {
 }
 
 // ============================================
+// API: Fetch PENDING registrations
+// ============================================
+async function fetchPendingRegistrations() {
+    if (!GOOGLE_APPS_SCRIPT_URL) return [];
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    try {
+        const response = await fetch(`${GOOGLE_APPS_SCRIPT_URL}?action=getPending&bot_secret=${BOT_SECRET}`, {
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        const result = await response.json();
+
+        if (result.success) {
+            return result.data || [];
+        } else {
+            console.error('❌ Failed to fetch pending:', result.error);
+            return [];
+        }
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            console.error('❌ Fetch pending timed out (10s limit)');
+        } else {
+            console.error('❌ Fetch pending error:', error.message);
+        }
+        return [];
+    }
+}
+
+// ============================================
 // API: Fetch EXPIRED registrations
 // ============================================
 async function fetchExpiredRegistrations() {
@@ -597,6 +630,39 @@ async function processApprovedRegistrations() {
     }
 }
 
+// ============================================
+// Process PENDING Registrations
+// ============================================
+async function processPendingRegistrations() {
+    try {
+        if (!client.isReady()) return;
+
+        console.log('⏳ Polling for pending registrations...');
+        const pendingUsers = await fetchPendingRegistrations();
+
+        if (pendingUsers.length === 0) {
+            return;
+        }
+
+        console.log(`   Found ${pendingUsers.length} pending users to auto-approve!`);
+
+        for (const user of pendingUsers) {
+            if (processedRows.has(user.rowIndex)) continue;
+
+            // 1. Immediately change status to Approved - 1000$ to claim the row
+            console.log(`   ✅ Auto-approving pending user: ${user.firstName || user.discordId}`);
+            const success = await updateStatus(user.rowIndex, 'Approved - 1000$');
+
+            if (success) {
+                // 2. We skip a full Google sheets cycle by immediately submitting them to the approval pipeline
+                await processApproval(user);
+            }
+        }
+    } catch (error) {
+        console.error('❌ Error in processPendingRegistrations:', error.message);
+    }
+}
+
 async function processApproval(reg) {
     processedRows.add(reg.rowIndex);
     console.log(`▶️  Processing: ${reg.firstName} ${reg.lastName || ''} (Discord: ${reg.discordInfo})`);
@@ -647,7 +713,7 @@ async function processApproval(reg) {
         await sendWelcomeDM(member.user, reg.firstName || reg.nickname, ACCESS_DURATION_MINUTES);
 
         // 6. Update Status in Sheet
-        const success = await updateStatus(reg.rowIndex, '1yr Access Active', expireAtStr);
+        const success = await updateStatus(reg.rowIndex, '1000$ Access', expireAtStr);
 
         if (success) {
             console.log(`✅  Process Complete for ${reg.firstName}`);
@@ -670,14 +736,16 @@ client.once('ready', () => {
 
     // Initial Poll
     if (GOOGLE_APPS_SCRIPT_URL) {
-        processApprovedRegistrations();
+        processPendingRegistrations();
+        setTimeout(processApprovedRegistrations, 2000);
         setTimeout(processExpiredRegistrations, 5000);
     }
 
     // Set Interval
     setInterval(() => {
         if (GOOGLE_APPS_SCRIPT_URL) {
-            processApprovedRegistrations();
+            processPendingRegistrations();
+            setTimeout(processApprovedRegistrations, 2000);
 
             // Poll expiry every minute (every 2 cycles of 30s)
             if (Date.now() % 60000 < 35000) {
