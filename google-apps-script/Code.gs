@@ -131,8 +131,8 @@ function getApprovedRegistrations() {
     const status = String(row[COLUMNS.STATUS] || '').toLowerCase().trim();
     
     // Only get "Approved" that hasn't been processed yet
-    // Exclude 'active', 'expired', 'done'
-    if (status.includes('approved') && !status.includes('done') && !status.includes('active') && !status.includes('expired')) {
+    // Exclude 'active', 'expired', 'done', '1000$ access'
+    if (status.includes('approved') && !status.includes('done') && !status.includes('active') && !status.includes('expired') && !status.includes('1000$ access')) {
       const discordInfo = String(row[COLUMNS.DISCORD_NAME] || '');
       const discordIdMatch = discordInfo.match(/\((\d+)\)/);
       const discordId = discordIdMatch ? discordIdMatch[1] : null;
@@ -175,8 +175,8 @@ function getExpiredRegistrations() {
     const status = String(row[COLUMNS.STATUS] || '').toLowerCase().trim();
     const expireAtStr = String(row[COLUMNS.EXPIRE_AT] || '');
     
-    // Check if status is Active
-    if (status.includes('active') && !status.includes('expired')) {
+    // Check if status is Active or 1000$ Access
+    if ((status.includes('active') || status.includes('1000$ access') || status.includes('1yr access')) && !status.includes('expired')) {
       if (expireAtStr) {
         const expireDate = new Date(expireAtStr);
         
