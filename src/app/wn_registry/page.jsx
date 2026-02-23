@@ -54,11 +54,8 @@ export default function RegisterPage() {
         country: '',
         contact: '',
         connextId: '',
-        tradingViewName: '',
         referalName: '',
         referalId: '',
-        itemsReceived: '',
-        depositAmount: '',
         transferSlip: null,
     });
 
@@ -148,11 +145,8 @@ export default function RegisterPage() {
             submitData.append('country', formData.country);
             submitData.append('contact', formData.contact);
             submitData.append('connextId', formData.connextId);
-            submitData.append('tradingViewName', formData.tradingViewName);
             submitData.append('referalName', formData.referalName);
             submitData.append('referalId', formData.referalId);
-            submitData.append('itemsReceived', formData.itemsReceived);
-            submitData.append('depositAmount', formData.depositAmount);
             submitData.append('discordId', discordUser?.id || '');
             submitData.append('discordUsername', discordUser?.username || '');
             if (formData.transferSlip) {
@@ -185,6 +179,8 @@ export default function RegisterPage() {
             formData.country &&
             formData.contact &&
             formData.connextId &&
+            formData.referalName &&
+            formData.referalId &&
             formData.transferSlip
         );
     };
@@ -440,28 +436,12 @@ export default function RegisterPage() {
                                         <p className="mt-1 text-xs text-text-secondary">ตัวเลขจาก Connext FX</p>
                                     </div>
 
-                                    {/* Trading View Name */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-white mb-2">
-                                            <TrendingUp className="w-4 h-4 inline mr-1" />
-                                            ชื่อ Trading View
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="tradingViewName"
-                                            value={formData.tradingViewName}
-                                            onChange={handleInputChange}
-                                            placeholder="Trading View Username"
-                                            className="form-input"
-                                        />
-                                    </div>
-
                                     {/* Referal Name & ID */}
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-sm font-medium text-white mb-2">
                                                 <UserPlus className="w-4 h-4 inline mr-1" />
-                                                Your Referal Name
+                                                Your Referal Name <span className="text-red-400">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -470,11 +450,12 @@ export default function RegisterPage() {
                                                 onChange={handleInputChange}
                                                 placeholder="ชื่อผู้แนะนำ"
                                                 className="form-input"
+                                                required
                                             />
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium text-white mb-2">
-                                                Referral ID
+                                                Referral ID <span className="text-red-400">*</span>
                                             </label>
                                             <input
                                                 type="text"
@@ -483,41 +464,12 @@ export default function RegisterPage() {
                                                 onChange={handleInputChange}
                                                 placeholder="ID ผู้แนะนำ"
                                                 className="form-input"
+                                                required
                                             />
                                         </div>
                                     </div>
 
-                                    {/* Items Received */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-white mb-2">
-                                            <Package className="w-4 h-4 inline mr-1" />
-                                            Items that have already been received
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="itemsReceived"
-                                            value={formData.itemsReceived}
-                                            onChange={handleInputChange}
-                                            placeholder="รายการที่ได้รับแล้ว"
-                                            className="form-input"
-                                        />
-                                    </div>
 
-                                    {/* Deposit Amount */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-white mb-2">
-                                            <DollarSign className="w-4 h-4 inline mr-1" />
-                                            ฝากเงินเข้าพอร์ตเทรด Connext ไปแล้วกี่ $
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="depositAmount"
-                                            value={formData.depositAmount}
-                                            onChange={handleInputChange}
-                                            placeholder="จำนวนเงินที่ฝาก (USD)"
-                                            className="form-input"
-                                        />
-                                    </div>
 
                                     {/* Transfer Slip Upload */}
                                     <div>

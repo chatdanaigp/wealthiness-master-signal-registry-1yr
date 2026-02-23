@@ -14,11 +14,8 @@ export async function POST(request) {
         const country = formData.get('country') || '';
         const contact = formData.get('contact') || '';
         const connextId = formData.get('connextId') || '';
-        const tradingViewName = formData.get('tradingViewName') || '';
         const referalName = formData.get('referalName') || '';
         const referalId = formData.get('referalId') || '';
-        const itemsReceived = formData.get('itemsReceived') || '';
-        const depositAmount = formData.get('depositAmount') || '';
         const discordId = formData.get('discordId') || '';
         const discordUsername = formData.get('discordUsername') || '';
 
@@ -45,11 +42,8 @@ export async function POST(request) {
             country: country,
             contact: contact,
             connext_id: connextId,
-            trading_view_name: tradingViewName,
             referal_name: referalName,
             referal_id: referalId,
-            items_received: itemsReceived,
-            deposit_amount: depositAmount,
             discord_id: discordId,
             discord_username: discordUsername,
             transferSlipBase64: transferSlipBase64,
