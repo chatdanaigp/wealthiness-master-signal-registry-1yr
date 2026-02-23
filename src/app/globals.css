@@ -1,0 +1,451 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+  --wealth: #2563EB;
+  /* Royal Blue */
+  --wealth-light: #60A5FA;
+  /* Lighter Blue */
+  --wealth-dark: #1E40AF;
+  /* Darker Blue */
+  --accent: #2563EB;
+  --accent-light: #60A5FA;
+  --green: #22C55E;
+  --green-light: #4ADE80;
+  --card-bg: #111111;
+  --card-border: #262626;
+  --text-secondary: #9CA3AF;
+  --discord: #5865F2;
+  --discord-hover: #4752C4;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Layout helpers */
+.page-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.card-container {
+  max-width: 32rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.registry-container {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Logo gradient box */
+.logo-box {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, var(--wealth) 0%, var(--wealth-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Background glow effects */
+.glow-circle {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+.glow-circle-1 {
+  top: 25%;
+  left: 25%;
+  width: 24rem;
+  height: 24rem;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.glow-circle-2 {
+  bottom: 25%;
+  right: 25%;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(96, 165, 250, 0.05);
+}
+
+.glow-circle-3 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.glow-circle-purple {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: rgba(88, 101, 242, 0.05);
+}
+
+.viewport-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: inset 0 0 150px rgba(37, 99, 235, 0.2);
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Custom color classes (fallbacks for Tailwind) */
+.text-wealth {
+  color: var(--wealth);
+}
+
+.text-wealth-light {
+  color: var(--wealth-light);
+}
+
+.text-discord {
+  color: var(--discord);
+}
+
+.text-green {
+  color: var(--green);
+}
+
+.text-text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.bg-discord-20 {
+  background: rgba(88, 101, 242, 0.2);
+}
+
+.bg-discord-10 {
+  background: rgba(88, 101, 242, 0.1);
+}
+
+.border-discord-20 {
+  border-color: rgba(88, 101, 242, 0.2);
+}
+
+.border-discord {
+  border-color: var(--discord);
+}
+
+/* Discord icon box */
+.discord-icon-box {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1rem;
+  background: rgba(88, 101, 242, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Discord icon plain (no background) */
+.discord-icon-plain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text alignment utilities */
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Badge VIP style */
+.badge-vip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  color: var(--wealth-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Header centered container */
+.header-center {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wealth-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wealth);
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(17, 17, 17, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+/* Wealth gradient text */
+.wealth-gradient {
+  background: linear-gradient(135deg, var(--wealth) 0%, var(--wealth-light) 50%, var(--wealth) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.wealth-glow {
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+}
+
+.wealth-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+}
+
+/* Animation keyframes */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-wealth {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 10px rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-wealth {
+  animation: pulse-wealth 2s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Discord Button */
+.btn-discord {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 2rem;
+  background: var(--discord);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-discord:hover {
+  background: var(--discord-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+}
+
+/* Wealth Button (Primary) */
+.btn-wealth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--wealth) 0%, var(--wealth-light) 50%, var(--wealth) 100%);
+  background-size: 200% 100%;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-wealth:hover:not(:disabled) {
+  background-position: 100% 0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+}
+
+.btn-wealth:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form Inputs */
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--wealth);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* File Upload */
+.file-upload {
+  position: relative;
+  padding: 2rem;
+  border: 2px dashed rgba(37, 99, 235, 0.3);
+  border-radius: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload:hover {
+  border-color: var(--wealth);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.file-upload.has-file {
+  border-color: var(--green);
+  border-style: solid;
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.file-upload input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* VIP Badge */
+.badge-vip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(96, 165, 250, 0.1) 100%);
+  border: 1px solid var(--wealth);
+  border-radius: 2rem;
+  color: var(--wealth-light);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Discord Icon Fix */
+.discord-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.discord-icon-sm {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
