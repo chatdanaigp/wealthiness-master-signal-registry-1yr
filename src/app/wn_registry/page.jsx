@@ -280,24 +280,31 @@ export default function RegisterPage() {
                             <div className="glass rounded-2xl p-6 sm:p-8 animate-fadeIn w-full relative z-20">
                                 {/* Discord User Info */}
                                 {discordUser && (
-                                    <div className="flex items-center gap-4 p-4 bg-discord/10 rounded-xl mb-8 border border-discord/20">
+                                    <div style={{
+                                        display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem',
+                                        backgroundColor: 'rgba(88, 101, 242, 0.1)', borderRadius: '0.75rem',
+                                        marginBottom: '2rem', border: '1px solid rgba(88, 101, 242, 0.2)'
+                                    }}>
                                         <img
                                             src={discordUser.avatar
                                                 ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png?size=64`
                                                 : `https://cdn.discordapp.com/embed/avatars/${parseInt(discordUser.discriminator || '0') % 5}.png`
                                             }
                                             alt="Discord Avatar"
-                                            className="w-14 h-14 min-w-[56px] min-h-[56px] shrink-0 rounded-full border-2 border-discord object-cover"
+                                            style={{
+                                                width: '56px', height: '56px', minWidth: '56px', minHeight: '56px',
+                                                flexShrink: 0, borderRadius: '9999px', border: '2px solid #5865F2', objectFit: 'cover'
+                                            }}
                                         />
-                                        <div className="min-w-0">
-                                            <p className="text-white font-semibold text-lg">
+                                        <div style={{ minWidth: 0 }}>
+                                            <p style={{ color: 'white', fontWeight: 600, fontSize: '1.125rem', margin: 0 }}>
                                                 {discordUser.global_name || discordUser.username}
                                             </p>
-                                            <p className="text-text-secondary text-sm">
+                                            <p style={{ color: '#9CA3AF', fontSize: '0.875rem', margin: 0 }}>
                                                 @{discordUser.username}
                                             </p>
                                         </div>
-                                        <CheckCircle className="w-6 h-6 text-green ml-auto" />
+                                        <CheckCircle style={{ width: '24px', height: '24px', color: '#22C55E', marginLeft: 'auto' }} />
                                     </div>
                                 )}
 
