@@ -5,7 +5,7 @@
   "main": "discord-bot.js",
   "scripts": {
     "dev": "next dev",
-    "build": "npx tailwindcss -i ./src/app/globals.css -o ./public/tailwind-compiled.css && next build",
+    "build": "rm -rf .next && npx tailwindcss -i ./src/app/globals.css -o ./public/tailwind-compiled.css && next build",
     "start": "next start",
     "bot": "node discord-bot.js",
     "lint": "next lint"
