@@ -338,6 +338,36 @@ export default function RegisterPage() {
                                         />
                                     </div>
 
+                                    {/* Middle Name & Last Name */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-white mb-2">
+                                                Middle Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="middleName"
+                                                value={formData.middleName}
+                                                onChange={handleInputChange}
+                                                placeholder="ชื่อกลาง (ถ้ามี)"
+                                                className="form-input"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-white mb-2">
+                                                Last Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="lastName"
+                                                value={formData.lastName}
+                                                onChange={handleInputChange}
+                                                placeholder="นามสกุล"
+                                                className="form-input"
+                                            />
+                                        </div>
+                                    </div>
+
                                     {/* Nickname */}
                                     <div>
                                         <label className="block text-sm font-medium text-white mb-2">
@@ -487,36 +517,6 @@ export default function RegisterPage() {
                                             placeholder="จำนวนเงินที่ฝาก (USD)"
                                             className="form-input"
                                         />
-                                    </div>
-
-                                    {/* Middle Name & Last Name */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-white mb-2">
-                                                Middle Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="middleName"
-                                                value={formData.middleName}
-                                                onChange={handleInputChange}
-                                                placeholder="ชื่อกลาง (ถ้ามี)"
-                                                className="form-input"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-white mb-2">
-                                                Last Name
-                                            </label>
-                                            <input
-                                                type="text"
-                                                name="lastName"
-                                                value={formData.lastName}
-                                                onChange={handleInputChange}
-                                                placeholder="นามสกุล"
-                                                className="form-input"
-                                            />
-                                        </div>
                                     </div>
 
                                     {/* Transfer Slip Upload */}
