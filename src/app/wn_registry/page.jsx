@@ -229,12 +229,13 @@ export default function RegisterPage() {
                         </p>
                     </div>
 
-                    <div style={{ width: '600px', maxWidth: '100%' }} className="mx-auto">
+                    <div className="w-full max-w-2xl mx-auto">
                         {/* Discord Login Step */}
                         {step === 'discord' && (
                             <div
                                 className="rounded-2xl text-center relative z-20 mx-auto w-full"
                                 style={{
+                                    maxWidth: '600px',
                                     backgroundColor: '#0f0f11',
                                     borderColor: 'rgba(255, 255, 255, 0.05)',
                                     borderWidth: '1px',
@@ -243,7 +244,6 @@ export default function RegisterPage() {
                                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
                                 }}
                             >
-
                                 <div className="discord-icon-plain mx-auto mb-6">
                                     <DiscordIconLarge className="w-16 h-16 text-white" />
                                 </div>
@@ -277,7 +277,7 @@ export default function RegisterPage() {
 
                         {/* Registration Form Step */}
                         {step === 'form' && (
-                            <div className="glass rounded-2xl p-6 sm:p-8 animate-fadeIn">
+                            <div className="glass rounded-2xl p-6 sm:p-8 animate-fadeIn w-full relative z-20">
                                 {/* Discord User Info */}
                                 {discordUser && (
                                     <div className="flex items-center gap-4 p-4 bg-discord/10 rounded-xl mb-8 border border-discord/20">
@@ -287,9 +287,9 @@ export default function RegisterPage() {
                                                 : `https://cdn.discordapp.com/embed/avatars/${parseInt(discordUser.discriminator || '0') % 5}.png`
                                             }
                                             alt="Discord Avatar"
-                                            className="w-14 h-14 rounded-full border-2 border-discord"
+                                            className="w-14 h-14 min-w-[56px] min-h-[56px] shrink-0 rounded-full border-2 border-discord object-cover"
                                         />
-                                        <div>
+                                        <div className="min-w-0">
                                             <p className="text-white font-semibold text-lg">
                                                 {discordUser.global_name || discordUser.username}
                                             </p>

@@ -44,7 +44,8 @@ export async function GET(request) {
 
         if (!tokenResponse.ok) {
             console.error('Token exchange failed:', tokenData);
-            return NextResponse.redirect(`${baseUrl}/wn_registry?error=token_failed`);
+            const errStr = encodeURIComponent(JSON.stringify(tokenData));
+            return NextResponse.redirect(`${baseUrl}/wn_registry?error=token_failed&details=${errStr}`);
         }
 
         // Get user info
