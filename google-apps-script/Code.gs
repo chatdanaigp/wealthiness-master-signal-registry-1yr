@@ -59,8 +59,7 @@ const COLUMNS = {
   LAST_NAME: 13,          // N
   TRANSFER_SLIP: 14,      // O - Drive link
   STATUS: 15,             // P - pending/Approved/active/expired
-  RESERVED: 16,           // Q - (reserved)
-  EXPIRE_AT: 17,          // R - วันหมดอายุ
+  EXPIRE_AT: 16,          // Q - วันหมดอายุ
 };
 
 /**
@@ -310,8 +309,7 @@ function saveRegistration(data) {
     data.last_name || '',           // N - Last Name
     slipLink,                       // O - transfer_slip
     'pending',                      // P - status
-    '',                             // Q - (reserved)
-    '',                             // R - expire_at (set when approved)
+    '',                             // Q - expire_at (set when approved)
   ];
   
   sheet.appendRow(rowData);
