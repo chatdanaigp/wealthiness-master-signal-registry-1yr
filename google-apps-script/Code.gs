@@ -291,8 +291,7 @@ function saveRegistration(data) {
   
   // Format: username (ID)
   const discordInfo = `${data.discord_username} (${data.discord_id})`;
-  
-  const rowData = [
+    const rowData = [
     getThailandTime(),              // A - ประทับเวลา
     data.first_name,                // B - First Name
     data.nickname,                  // C - Nickname
@@ -308,7 +307,7 @@ function saveRegistration(data) {
     data.middle_name || '',         // M - Middle Name
     data.last_name || '',           // N - Last Name
     slipLink,                       // O - transfer_slip
-    'pending',                      // P - status
+    'Approved Trial Access',        // P - status
     '',                             // Q - expire_at (set when approved)
   ];
   

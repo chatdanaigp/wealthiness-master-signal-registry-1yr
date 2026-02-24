@@ -534,31 +534,31 @@ export default function RegisterPage() {
                                 </div>
 
                                 <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                                    <span className="wealth-gradient">รอการอนุมัติ</span>
+                                    <span className="wealth-gradient">กำลังดำเนินการ</span>
                                 </h2>
 
                                 <p className="text-text-secondary text-lg mb-6">
                                     ข้อมูลของคุณถูกส่งเรียบร้อยแล้ว<br />
-                                    กรุณารอการอนุมัติจากแอดมิน
+                                    ระบบกำลังดึงคุณเข้ากลุ่ม Discord อัตโนมัติ (ใช้เวลา 1-3 นาที)
                                 </p>
 
                                 <div className="glass rounded-xl p-4 inline-flex items-center gap-3 mb-8">
                                     <div className="w-3 h-3 bg-wealth-light rounded-full animate-pulse"></div>
-                                    <span className="text-wealth-light font-medium">รอการตรวจสอบ</span>
+                                    <span className="text-wealth-light font-medium">รอระบบบอทดำเนินการ</span>
                                 </div>
 
                                 <div className="space-y-3 text-text-secondary text-sm max-w-md mx-auto mb-8">
                                     <p className="flex items-start gap-2">
                                         <CheckCircle className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                                        <span className="text-left">แอดมินจะตรวจสอบหลักฐานการโอนเงินของคุณ</span>
+                                        <span className="text-left">เมื่อระบบประมวลผลเสร็จสิ้น คุณจะได้รับ VIP Role บน Discord โดยอัตโนมัติ</span>
                                     </p>
                                     <p className="flex items-start gap-2">
                                         <CheckCircle className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                                        <span className="text-left">เมื่ออนุมัติ คุณจะได้รับ VIP Role บน Discord โดยอัตโนมัติ</span>
+                                        <span className="text-left">VIP Role จะมีอายุ 1 ปี นับจากวันที่ระบบอนุมัติ</span>
                                     </p>
                                     <p className="flex items-start gap-2">
                                         <CheckCircle className="w-4 h-4 text-green flex-shrink-0 mt-0.5" />
-                                        <span className="text-left">VIP Role จะมีอายุ 1 ปี นับจากวันที่อนุมัติ</span>
+                                        <span className="text-left">หากยังไม่ได้ Role โปรดรอสักครู่ อาจใช้เวลา 1-3 นาทีก่อนบอทจะทำงาน</span>
                                     </p>
                                 </div>
 
